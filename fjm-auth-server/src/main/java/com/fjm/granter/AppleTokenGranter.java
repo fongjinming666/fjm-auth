@@ -64,7 +64,7 @@ public class AppleTokenGranter extends AbstractTokenGranter {
         }
         UserDetails userDetails = securityUserService.loadUserByAppleUserId(appleUserId);
 
-        Authentication user = new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
+        Authentication user = new UsernamePasswordAuthenticationToken(userDetails,
                 userDetails.getPassword(), userDetails.getAuthorities());
         return new OAuth2Authentication(tokenRequest.createOAuth2Request(client), user);
     }

@@ -22,8 +22,6 @@ public class SmsTokenGranter extends AbstractTokenGranter {
 
     private SecurityUserService securityUserService;
 
-    private DefaultAcsClient defaultAcsClient;
-
     /**
      * 构造方法提供一些必要的注入的参数
      * 通过这些参数来完成我们父类的构建
@@ -32,16 +30,13 @@ public class SmsTokenGranter extends AbstractTokenGranter {
      * @param clientDetailsService
      * @param oAuth2RequestFactory
      * @param securityUserService
-     * @param defaultAcsClient
      */
     public SmsTokenGranter(AuthorizationServerTokenServices tokenServices,
                            ClientDetailsService clientDetailsService,
                            OAuth2RequestFactory oAuth2RequestFactory,
-                           SecurityUserService securityUserService,
-                           DefaultAcsClient defaultAcsClient) {
+                           SecurityUserService securityUserService) {
         super(tokenServices, clientDetailsService, oAuth2RequestFactory, GRANT_TYPE);
         this.securityUserService = securityUserService;
-        this.defaultAcsClient = defaultAcsClient;
     }
 
     /**
@@ -54,10 +49,11 @@ public class SmsTokenGranter extends AbstractTokenGranter {
     @Override
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         Map<String, String> params = tokenRequest.getRequestParameters();
+        //String clientId = params.getOrDefault("client_id", "");
         String phone = params.getOrDefault("sms", "");
         UserDetails userDetails = securityUserService.loadUserByPhone(phone);
 
-        Authentication user = new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
+        Authentication user = new UsernamePasswordAuthenticationToken(userDetails,
                 userDetails.getPassword(), userDetails.getAuthorities());
         return new OAuth2Authentication(tokenRequest.createOAuth2Request(client), user);
     }

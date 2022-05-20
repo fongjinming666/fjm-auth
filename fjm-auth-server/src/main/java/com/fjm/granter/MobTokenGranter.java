@@ -57,6 +57,7 @@ public class MobTokenGranter extends AbstractTokenGranter {
     @Override
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         Map<String, String> params = tokenRequest.getRequestParameters();
+        //String clientId = params.getOrDefault("client_id", "");
         String mobAccessToken = params.getOrDefault("mob_access_token", "");
         /** 实现一键登录获取phone. */
         String phone = null;
@@ -67,7 +68,7 @@ public class MobTokenGranter extends AbstractTokenGranter {
         }
         UserDetails userDetails = securityUserService.loadUserByPhone(phone);
 
-        Authentication user = new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
+        Authentication user = new UsernamePasswordAuthenticationToken(userDetails,
                 userDetails.getPassword(), userDetails.getAuthorities());
         return new OAuth2Authentication(tokenRequest.createOAuth2Request(client), user);
     }

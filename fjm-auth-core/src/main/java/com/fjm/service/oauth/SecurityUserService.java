@@ -82,18 +82,17 @@ public class SecurityUserService implements UserDetailsService {
         query.addCriteria(Criteria.where(Constants.DELETED).is(DeleteEnum.NO_DELETED.getValue()))
                 //.addCriteria(Criteria.where(Constants.STATUS).is(StatusEnum.ACTIVE_STATUS.getValue()))
                 .addCriteria(Criteria.where(OauthUser.PHONE).is(phone));
-        OauthUser user = oauthUserDao.findOne(query);
-        if (user == null) {
+        OauthUser oauthUser = oauthUserDao.findOne(query);
+        if (oauthUser == null) {
             throw new BadRequestException(ApiResult.NOT_FOUND, "用户不存在");
         }
-        Integer status = user.getStatus() == null ? 0 : user.getStatus();
+        Integer status = oauthUser.getStatus() == null ? 0 : oauthUser.getStatus();
         if (status != 1) {
             throw new BadRequestException(ApiResult.DISABLED, "用户已被禁用");
         }
-        OauthUser uacUser = oauthUserDao.findOne(query);
-
+        User user = new User(oauthUser);
         //todo 增加权限获取逻辑
-        return new User(uacUser);
+        return user;
     }
 
     public UserDetails loadUserByAppleUserId(String appleUserId) {
@@ -101,18 +100,17 @@ public class SecurityUserService implements UserDetailsService {
         query.addCriteria(Criteria.where(Constants.DELETED).is(DeleteEnum.NO_DELETED.getValue()))
                 //.addCriteria(Criteria.where(Constants.STATUS).is(StatusEnum.ACTIVE_STATUS.getValue()))
                 .addCriteria(Criteria.where(OauthUser.APPLEUSERID).is(appleUserId));
-        OauthUser user = oauthUserDao.findOne(query);
-        if (user == null) {
+        OauthUser oauthUser = oauthUserDao.findOne(query);
+        if (oauthUser == null) {
             throw new BadRequestException(ApiResult.NOT_FOUND, "用户不存在");
         }
-        Integer status = user.getStatus() == null ? 0 : user.getStatus();
+        Integer status = oauthUser.getStatus() == null ? 0 : oauthUser.getStatus();
         if (status != 1) {
             throw new BadRequestException(ApiResult.DISABLED, "用户已被禁用");
         }
-        OauthUser uacUser = oauthUserDao.findOne(query);
-
+        User user = new User(oauthUser);
         //todo 增加权限获取逻辑
-        return new User(uacUser);
+        return user;
     }
 
 
@@ -121,18 +119,17 @@ public class SecurityUserService implements UserDetailsService {
         query.addCriteria(Criteria.where(Constants.DELETED).is(DeleteEnum.NO_DELETED.getValue()))
                 //.addCriteria(Criteria.where(Constants.STATUS).is(StatusEnum.ACTIVE_STATUS.getValue()))
                 .addCriteria(Criteria.where(OauthUser.WECHATID).is(openId));
-        OauthUser user = oauthUserDao.findOne(query);
-        if (user == null) {
+        OauthUser oauthUser = oauthUserDao.findOne(query);
+        if (oauthUser == null) {
             throw new BadRequestException(ApiResult.NOT_FOUND, "用户不存在");
         }
-        Integer status = user.getStatus() == null ? 0 : user.getStatus();
+        Integer status = oauthUser.getStatus() == null ? 0 : oauthUser.getStatus();
         if (status != 1) {
             throw new BadRequestException(ApiResult.DISABLED, "用户已被禁用");
         }
-        OauthUser uacUser = oauthUserDao.findOne(query);
-
+        User user = new User(oauthUser);
         //todo 增加权限获取逻辑
-        return new User(uacUser);
+        return user;
     }
 
 

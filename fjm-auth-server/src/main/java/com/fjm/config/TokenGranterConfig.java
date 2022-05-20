@@ -100,7 +100,7 @@ public class TokenGranterConfig {
         granters.addAll(Arrays.asList(
                 //短信登录
                 new SmsTokenGranter(authorizationServerTokenServices, oauthClientService,
-                        oAuth2RequestFactory, securityUserService,defaultAcsClient),
+                        oAuth2RequestFactory, securityUserService),
                 //一键登录
                 new MobTokenGranter(authorizationServerTokenServices, oauthClientService,
                         oAuth2RequestFactory, securityUserService,defaultAcsClient),
