@@ -35,13 +35,16 @@ public class MobTokenGranter extends AbstractTokenGranter {
      * @param clientDetailsService
      * @param oAuth2RequestFactory
      * @param securityUserService
+     * @param defaultAcsClient
      */
     public MobTokenGranter(AuthorizationServerTokenServices tokenServices,
                            ClientDetailsService clientDetailsService,
                            OAuth2RequestFactory oAuth2RequestFactory,
-                           SecurityUserService securityUserService) {
+                           SecurityUserService securityUserService,
+                           DefaultAcsClient defaultAcsClient) {
         super(tokenServices, clientDetailsService, oAuth2RequestFactory, GRANT_TYPE);
         this.securityUserService = securityUserService;
+        this.defaultAcsClient = defaultAcsClient;
     }
 
     /**

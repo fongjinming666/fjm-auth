@@ -131,7 +131,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ValidateOauthCodeException.class)
     public ApiData handleValidateOauthCodeException(ValidateOauthCodeException e) {
-        log.error("Exception异常:result{}", ThrowableUtil.getStackTrace(e));
+        //log.error("Exception异常:result{}", ThrowableUtil.getStackTrace(e));
         return ApiData.error(e.getResult(), e.getMessage());
     }
 }

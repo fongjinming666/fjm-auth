@@ -15,27 +15,20 @@ import java.time.LocalDateTime;
  * @Description:
  */
 @Data
-@Accessors(chain = true)
 public class ApiData<T> implements Serializable {
-    public interface common {};
 
-    @JsonView(common.class)
+    //@JsonView(common.class)
     private Integer code;
 
-    @JsonView(common.class)
+    //@JsonView(common.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;
 
-    @JsonView(common.class)
+    //@JsonView(common.class)
     private T data;
 
-    @JsonView(common.class)
+    //@JsonView(common.class)
     private String message;
-
-    @JsonView(common.class)
-    private String logId;
-
-    private String sign;
 
     public ApiData() {
         timestamp = LocalDateTime.now();
@@ -50,13 +43,6 @@ public class ApiData<T> implements Serializable {
         this();
         this.code = code;
         this.message = message;
-    }
-
-    public ApiData(Integer code, String message, String sign) {
-        this();
-        this.code = code;
-        this.message = message;
-        this.sign = sign;
     }
 
     public ApiData(T data) {
@@ -77,28 +63,12 @@ public class ApiData<T> implements Serializable {
         this.message = message;
     }
 
-    public ApiData(Integer code, T data, String message, String sign) {
-        this();
-        this.code = code;
-        this.data = data;
-        this.message = message;
-        this.sign = sign;
-    }
-
-    public ApiData(Integer code, String message, String logId, String sign) {
-        this();
-        this.code = code;
-        this.message = message;
-        this.logId = logId;
-        this.sign = sign;
-    }
-
     public static ApiData ok() {
-        return new ApiData<>(null);
+        return new ApiData<>(ApiResult.SUCCESS.getValue(),null,ApiResult.SUCCESS.getMessage());
     }
 
     public static <T> ApiData<T> ok(T data) {
-        return new ApiData<>(data);
+        return new ApiData<>(ApiResult.SUCCESS.getValue(),data,ApiResult.SUCCESS.getMessage());
     }
 
     public static <T> ApiData<T> error(ApiResult resultCode, String message) {

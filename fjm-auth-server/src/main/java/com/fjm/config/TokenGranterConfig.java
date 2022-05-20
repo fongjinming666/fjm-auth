@@ -1,5 +1,6 @@
 package com.fjm.config;
 
+import com.aliyuncs.DefaultAcsClient;
 import com.fjm.dao.IWechatAuthDao;
 import com.fjm.granter.AppleTokenGranter;
 import com.fjm.granter.MobTokenGranter;
@@ -57,6 +58,9 @@ public class TokenGranterConfig {
     @Resource
     private IWechatAuthDao wechatAuthDao;
 
+    @Resource
+    private DefaultAcsClient defaultAcsClient;
+
     private TokenGranter tokenGranter;
 
     @Bean("tokenGranter")
@@ -96,10 +100,10 @@ public class TokenGranterConfig {
         granters.addAll(Arrays.asList(
                 //短信登录
                 new SmsTokenGranter(authorizationServerTokenServices, oauthClientService,
-                        oAuth2RequestFactory, securityUserService),
+                        oAuth2RequestFactory, securityUserService,defaultAcsClient),
                 //一键登录
                 new MobTokenGranter(authorizationServerTokenServices, oauthClientService,
-                        oAuth2RequestFactory, securityUserService),
+                        oAuth2RequestFactory, securityUserService,defaultAcsClient),
                 //微信授权登录
                 new WechatTokenGranter(authorizationServerTokenServices, oauthClientService,
                         oAuth2RequestFactory, securityUserService, wechatAuthDao),

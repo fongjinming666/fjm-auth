@@ -45,10 +45,10 @@ public class TestController {
         params.add("grant_type", "authorization_code");
         params.add("code", code);
         params.add("client_id", "fjm-admin");
-        params.add("client_secret", "fjm123456");
-        params.add("redirect_uri", "http://127.0.0.1:8021/oauth/authorize_token");
+        params.add("client_secret", "123456");
+        params.add("redirect_uri", "http://127.0.0.1:5050/oauth/authorize_token");
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity("http://127.0.0.1:8013/oauth/token", requestEntity, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://127.0.0.1:5050/oauth/token", requestEntity, String.class);
         String token = response.getBody();
         log.info("token => {}", token);
         return token;

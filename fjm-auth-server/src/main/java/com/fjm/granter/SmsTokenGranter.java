@@ -1,5 +1,6 @@
 package com.fjm.granter;
 
+import com.aliyuncs.DefaultAcsClient;
 import com.fjm.service.oauth.SecurityUserService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,21 +22,26 @@ public class SmsTokenGranter extends AbstractTokenGranter {
 
     private SecurityUserService securityUserService;
 
+    private DefaultAcsClient defaultAcsClient;
+
     /**
      * 构造方法提供一些必要的注入的参数
      * 通过这些参数来完成我们父类的构建
      *
-     * @param tokenServices        tokenServices
-     * @param clientDetailsService clientDetailsService
-     * @param oAuth2RequestFactory oAuth2RequestFactory
-     * @param securityUserService  securityUserService
+     * @param tokenServices
+     * @param clientDetailsService
+     * @param oAuth2RequestFactory
+     * @param securityUserService
+     * @param defaultAcsClient
      */
     public SmsTokenGranter(AuthorizationServerTokenServices tokenServices,
                            ClientDetailsService clientDetailsService,
                            OAuth2RequestFactory oAuth2RequestFactory,
-                           SecurityUserService securityUserService) {
+                           SecurityUserService securityUserService,
+                           DefaultAcsClient defaultAcsClient) {
         super(tokenServices, clientDetailsService, oAuth2RequestFactory, GRANT_TYPE);
         this.securityUserService = securityUserService;
+        this.defaultAcsClient = defaultAcsClient;
     }
 
     /**

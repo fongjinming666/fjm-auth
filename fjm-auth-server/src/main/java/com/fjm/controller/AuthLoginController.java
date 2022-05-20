@@ -3,6 +3,7 @@ package com.fjm.controller;
 import cn.hutool.core.util.StrUtil;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fjm.bo.AuthUserPageQuery;
 import com.fjm.dao.IOauthUserDao;
 import com.fjm.domain.AuthConstant;
@@ -88,7 +89,7 @@ public class AuthLoginController {
         if (!isPhonelegal) {
             throw new BadRequestException(ApiResult.INVALID_MOBILE_PHONE_NUMBER);
         }
-        String code = RandomCode.random(4, true);
+        String code = RandomCode.random(6, true);
         Map codeMap = new HashMap<>();
         codeMap.put("code", code);
         boolean sendState = false;
@@ -124,7 +125,7 @@ public class AuthLoginController {
         }
         /** 验证码判断. */
         String codeInRedis = redisService.getString(FromOauthLoginConstant.OAUTH_MOBILE_LOGIN_CODE + smsCode + appCodeLoginVo.getPhone());
-        log.info("oauth real sms verificationCode:{},codeInRedis:{}:", appCodeLoginVo.getVerificationCode(), codeInRedis);
+        log.info("oauth real sms verificationCode:{},codeInRedis:{}", appCodeLoginVo.getVerificationCode(), codeInRedis);
         if (StringUtils.isBlank(codeInRedis)) {
             throw new ValidateOauthCodeException(ApiResult.CODE_INVALID);
         } else if (!codeInRedis.equals(appCodeLoginVo.getVerificationCode())) {

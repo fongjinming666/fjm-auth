@@ -111,6 +111,7 @@ public class JwtAuthorizationServerConfig extends AuthorizationServerConfigurerA
                 .tokenGranter(this.tokenGranter)
                 //.tokenGranter(tokenGranters(endpoints))
                 .exceptionTranslator(this.oauthExceptionTranslator)
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET)
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST);
     }
 }

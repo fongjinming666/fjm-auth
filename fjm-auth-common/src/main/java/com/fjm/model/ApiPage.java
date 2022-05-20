@@ -1,11 +1,9 @@
 package com.fjm.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fjm.emun.AdminResult;
 import com.fjm.emun.ApiResult;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
 import org.springframework.data.domain.Page;
 
 import java.io.Serializable;
@@ -17,45 +15,40 @@ import java.util.Collections;
  * @Description:
  */
 @Data
-@Accessors(chain = true)
 @AllArgsConstructor
 public class ApiPage<List> extends ApiData<List> implements Serializable {
-    public interface pageLevel extends common {
-    }
 
-    ;
-
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private long pageNum = 1;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private long pageSize = 10;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private int size;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private long totalNum = 0;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private int pages;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private int prePage;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private int nextPage;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private boolean isFirstPage;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private boolean isLastPage;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private boolean hasPreviousPage;
 
-    @JsonView(pageLevel.class)
+    //@JsonView(pageLevel.class)
     private boolean hasNextPage;
 
     /**
