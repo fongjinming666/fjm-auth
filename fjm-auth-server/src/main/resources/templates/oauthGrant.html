@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <link rel="shortcut icon" th:href="@{/static/img/favicon.ico}"/>
+    <title>确认授权页面</title>
+    <link rel="stylesheet" href="//i.gtimg.cn/vipstyle/frozenui/2.0.0/css/frozen.css"/>
+
+    <style>
+        .block {
+            width: 314px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .ui-notice {
+            position: relative;
+            padding: 20px 15px;
+            box-sizing: border-box;
+        }
+        .ui-notice p {
+            color: #000;
+            font-size: 14px;
+        }
+        .ui-btn-primary {
+            width: 314px;
+            height: 36px;
+            border-radius: 18px;
+            outline: none;
+            color: #fff;
+            font-size: 16px;
+            line-height: 34px;
+            text-align: center;
+            background-color: #18d0b4;
+            border-color: #18d0b4;
+            box-sizing: border-box;
+        }
+        .ui-notice-btn {
+            padding: 50px 0px 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="block">
+    <section class="ui-notice">
+        <i class="icon icon-notice"></i>
+        <p>是否授权：<span th:text="${session.authorizationRequest.clientId}">clientId</span></p>
+        <div class="ui-notice-btn">
+            <form id='confirmationForm' name='confirmationForm' action="/oauth/authorize" method='post'>
+                <input name='user_oauth_approval' value='true' type='hidden'/>
+                <!--写好授权访问领域-->
+                <input th:name="${s}" value="true" type="hidden" th:each="s : ${scopeList}"/>
+                <input class="ui-btn-primary ui-btn-lg ui-btn-primary" name='authorize' value='授权' type='submit'/>
+            </form>
+        </div>
+    </section>
+</div>
+</body>
+</html>

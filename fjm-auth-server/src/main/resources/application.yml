@@ -1,0 +1,45 @@
+server:
+  max-http-header-size: 20480
+  port: 5050
+spring:
+  application:
+
+    name: fjm-auth
+  cache:
+    type: redis
+  redis:
+    jedis:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 20
+        min-idle: 0
+    host: 127.0.0.1 # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password: 123456 # Redis服务器连接密码（默认为空）
+    timeout: 3000ms # Redis连接超时时间（毫秒）
+  data:
+    mongodb:
+      auth:
+        uri: mongodb://root:123456@127.0.0.1:27017/?authSource=admin
+        database: veeMicro
+auth:
+  properties:
+    approval_Time: 30
+ali:
+  accessKeyId: 1
+  accessKeySecret: 2
+  sms:
+    signName: 3
+    loginTemplateCode: 4
+    glogalSignName: 5
+    globalLoginTemplateCode: 6
+logging:
+  file:
+    max-size: 1024MB
+    max-history: 30 # 30天 日志的保留时间，超过指定数会自动删除
+    path: logs
+  level:
+    root: info
+    com.fjm.dao.controller.TestController: info

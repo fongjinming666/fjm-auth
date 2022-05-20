@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fjm-auth</artifactId>
+        <groupId>com.fjm</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>auth-core</name>
+    <description>auth core package</description>
+    <groupId>com.fjm</groupId>
+    <artifactId>fjm-auth-core</artifactId>
+    <version>1.0.0</version>
+
+    <dependencies>
+        <!--moudle 依赖-->
+        <dependency>
+            <groupId>com.fjm</groupId>
+            <artifactId>fjm-auth-common</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.security.oauth</groupId>
+                    <artifactId>spring-security-oauth2</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fjm</groupId>
+            <artifactId>fjm-auth-dao</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fjm</groupId>
+                    <artifactId>fjm-auth-common</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--moudle 依赖-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+
+        <!-- common utils -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- common utils -->
+    </dependencies>
+</project>

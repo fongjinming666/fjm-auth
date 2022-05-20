@@ -37,6 +37,7 @@ test/
 
 *.log
 *.log.*
+application-junit.yml
 
 # Default ignored files
 /workspace.xml

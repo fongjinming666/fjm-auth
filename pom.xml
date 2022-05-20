@@ -18,7 +18,10 @@
     <version>1.0.0</version>
 
     <modules>
-        <module>fjm-auth-entity</module>
+        <module>fjm-auth-common</module>
+        <module>fjm-auth-dao</module>
+        <module>fjm-auth-core</module>
+        <module>fjm-auth-server</module>
     </modules>
 
     <properties>
@@ -221,9 +224,19 @@
             </dependency>
             <!--工具包-->
             <dependency>
+                <groupId>com.googlecode.libphonenumber</groupId>
+                <artifactId>libphonenumber</artifactId>
+                <version>${google.libphonenumber.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>jwks-rsa</artifactId>
+                <version>${jwks.rsa.version}</version>
             </dependency>
             <!-- common used maven util end -->
         </dependencies>
