@@ -32,13 +32,14 @@ public class ValidateCodeGranterFilter extends OncePerRequestFilter {
     @Resource
     private ValidateCodeProcessorHolder validateCodeProcessorHolder;
 
-    private RequestMatcher requestMatcher = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.name());
+    private RequestMatcher requestMatcherGet = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.name());
+    private RequestMatcher requestMatcherPost = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.name());
 
     @SneakyThrows
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
         try {
-            if (requestMatcher.matches(request)) {
+            if (requestMatcherGet.matches(request) || requestMatcherPost.matches(request)) {
                 String grantType = getGrantType(request);
                 if ("sms".equalsIgnoreCase(grantType) || "email".equalsIgnoreCase(grantType)) {
                     log.info("请求需要验证！验证请求：" + request.getRequestURI() + " 验证类型：" + grantType);

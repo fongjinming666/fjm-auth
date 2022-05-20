@@ -14,4 +14,4 @@ http://127.0.0.1:5050/oauth/authorize?response_type=code&redirect_uri=http://127
 #自定义模式-短信模式
 http://127.0.0.1:5050/code/sms?sms=13420016280
 ##执行验证
-http://127.0.0.1:5050/oauth/token?grant_type=sms&scope=user_read&client_id=fjm-admin&client_secret=123456&smsCode=86&sms=13420016280&code=347896
+http://127.0.0.1:5050/oauth/token?grant_type=sms&scope=user_read&client_id=fjm-admin&client_secret=123456&smsCode=86&sms=13420016280&code=963650
