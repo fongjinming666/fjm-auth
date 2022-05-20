@@ -32,7 +32,7 @@ public class ValidateCodeGranterFilter extends OncePerRequestFilter {
     @Resource
     private ValidateCodeProcessorHolder validateCodeProcessorHolder;
 
-    private RequestMatcher requestMatcherGet = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.name());
+    private RequestMatcher requestMatcherGet = new AntPathRequestMatcher("/oauth/token", HttpMethod.GET.name());
     private RequestMatcher requestMatcherPost = new AntPathRequestMatcher("/oauth/token", HttpMethod.POST.name());
 
     @SneakyThrows
