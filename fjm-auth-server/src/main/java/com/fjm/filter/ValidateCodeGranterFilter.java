@@ -1,6 +1,7 @@
 package com.fjm.filter;
 
 import com.fjm.mapper.CustomMapper;
+import com.fjm.utils.GolbalMvcExceptionHandlerUtils;
 import com.fjm.utils.validate.ValidateCodeProcessorHolder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -49,6 +50,7 @@ public class ValidateCodeGranterFilter extends OncePerRequestFilter {
             }
         } catch (Exception e) {
             log.error("doFilterInternal error", e);
+            GolbalMvcExceptionHandlerUtils.writeFailedToResponse(response, e, customMapper);
         }
         filterChain.doFilter(request, response);
     }
