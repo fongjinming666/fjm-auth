@@ -49,7 +49,7 @@ public class ValidateCodeGranterFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception e) {
-            log.error("doFilterInternal error", e);
+            //log.error("doFilterInternal error", e);
             GolbalMvcExceptionHandlerUtils.writeFailedToResponse(response, e, customMapper);
         }
         filterChain.doFilter(request, response);

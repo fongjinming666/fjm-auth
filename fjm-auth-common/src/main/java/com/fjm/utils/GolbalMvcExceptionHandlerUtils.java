@@ -36,7 +36,6 @@ public class GolbalMvcExceptionHandlerUtils {
         } catch (Exception ex) {
             writeFailedToResponse(response, ApiResult.SERVER_ERROR, ex.getMessage());
         }
-        writeFailedToResponse(response, ApiResult.SERVER_ERROR, ApiResult.SERVER_ERROR.getMessage());
     }
 
     public static void writeFailedToResponse(HttpServletResponse response, ApiResult resultCode, String message) throws Exception {
